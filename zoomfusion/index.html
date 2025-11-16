@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ZoomFusion Maps – Demo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="titlebar">ZoomFusion Maps — Fractional PanZoom Engine</div>
+    <div id="map"></div>
+
+    <script src="zoomfusion.js"></script>
+    <script>
+        const map = document.getElementById('map');
+        const calculator = new TileCalculator(256);
+        const manager = new TileManager(map, calculator);
+        const controller = new SimplePanZoom(map, manager);
+
+        const mapW = map.clientWidth;
+        const mapH = map.clientHeight;
+
+        controller.panX = (mapW - calculator.tileSize * 2) / 2;
+        controller.panY = (mapH - calculator.tileSize * 2) / 2;
+
+        controller.update();
+    </script>
+
+</body>
+
+</html>
